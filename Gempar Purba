@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Review PJOK SMA Semester 1 — Media Interaktif</title>
+  <!-- Font & Ikon -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(145deg, #f0f7ff 0%, #e6f0fa 100%);
+      color: #0b2b4a;
+      line-height: 1.5;
+      padding: 16px;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .app {
+      max-width: 1200px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      border-radius: 36px;
+      box-shadow: 0 25px 50px -12px rgba(0, 40, 80, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      overflow: hidden;
+      padding: 28px 28px 36px;
+      transition: all 0.2s;
+    }
+
+    /* ---------- Header / Navigasi ---------- */
+    .top-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand i {
+      font-size: 2rem;
+      color: #1e6f9f;
+      background: #fff;
+      padding: 10px;
+      border-radius: 18px;
+      box-shadow: 0 6px 12px rgba(0, 80, 130, 0.1);
+    }
+
+    .brand h1 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #0b3b5e, #1e6f9f);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .nav-menu {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .nav-menu button {
+      background: #ffffffd9;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #11527a;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 30, 60, 0.06);
+      transition: all 0.18s;
+      border: 1px solid rgba(30, 111, 159, 0.15);
+    }
+
+    .nav-menu button i {
+      font-size: 1rem;
+    }
+
+    .nav-menu button:hover {
+      background: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 18px -8px rgba(30, 111, 159, 0.3);
+      border-color: #1e6f9f;
+      color: #0a3b5a;
+    }
+
+    .nav-menu button.active {
+      background: #1e6f9f;
+      color: white;
+      border-color: #1e6f9f;
+      box-shadow: 0 10px 16px -6px #1e6f9f;
+    }
+
+    /* ---------- Halaman Konten ---------- */
+    .page {
+      display: none;
+      animation: fadeIn 0.35s ease;
+    }
+
+    .page.active-page {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(8px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .card {
+      background: white;
+      border-radius: 28px;
+      padding: 26px 28px;
+      margin-bottom: 22px;
+      box-shadow: 0 10px 24px -8px rgba(0, 60, 100, 0.12);
+      border: 1px solid #ffffffd0;
+      transition: all 0.2s;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .card-header i {
+      font-size: 2rem;
+      color: #1e6f9f;
+      background: #e7f0fa;
+      padding: 12px;
+      border-radius: 20px;
+    }
+
+    .card-header h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #083b58;
+      letter-spacing: -0.01em;
+    }
+
+    .card-header h3 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #0b4b70;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #ff9f1c;
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 0.75rem;
+      padding: 4px 12px;
+      border-radius: 40px;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+    }
+
+    /* Grid bola besar / kecil */
+    .sport-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 22px;
+      margin-top: 8px;
+    }
+
+    .sport-item {
+      background: #f9fdff;
+      border-radius: 24px;
+      padding: 20px;
+      border: 1px solid #d9e9f5;
+      transition: all 0.2s;
+    }
+
+    .sport-item:hover {
+      border-color: #1e6f9f;
+      box-shadow: 0 12px 20px -12px #1e6f9f;
+      background: #ffffff;
+    }
+
+    .sport-item h4 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #0b3b5e;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+      border-bottom: 2px solid #ff9f1c;
+      padding-bottom: 8px;
+    }
+
+    .sport-item h4 i {
+      color: #1e6f9f;
+    }
+
+    .sport-item ul {
+      list-style: none;
+      margin-top: 10px;
+    }
+
+    .sport-item li {
+      margin-bottom: 6px;
+      display: flex;
+      gap: 8px;
+      font-size: 0.95rem;
+    }
+
+    .sport-item li i {
+      color: #1e6f9f;
+      font-size: 0.8rem;
+      margin-top: 6px;
+    }
+
+    .pill {
+      background: #e7f0fa;
+      padding: 2px 12px;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #0d5279;
+      display: inline-block;
+    }
+
+    /* Tabel kebugaran */
+    .table-wrap {
+      overflow-x: auto;
+      border-radius: 18px;
+      margin: 18px 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      font-size: 0.95rem;
+    }
+
+    th {
+      background: #1e6f9f;
+      color: white;
+      padding: 12px 14px;
+      text-align: left;
+      font-weight: 600;
+    }
+
+    td {
+      padding: 10px 14px;
+      border-bottom: 1px solid #d9e9f5;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    .fitt-badge {
+      background: #ff9f1c20;
+      border-left: 4px solid #ff9f1c;
+      padding: 10px 18px;
+      border-radius: 14px;
+      font-weight: 600;
+      color: #7a4b00;
+      margin: 16px 0;
+    }
+
+    /* ---------- Kuis ---------- */
+    .quiz-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .progress-badge {
+      background: #e7f0fa;
+      padding: 6px 14px;
+      border-radius: 40px;
+      font-weight: 600;
+      color: #0d5279;
+      font-size: 0.9rem;
+    }
+
+    .question-box {
+      background: #ffffff;
+      border-radius: 22px;
+      padding: 22px 24px;
+      box-shadow: 0 4px 16px rgba(0, 50, 90, 0.06);
+      border: 1px solid #d9e9f5;
+    }
+
+    .q-text {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 18px;
+      color: #083b58;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .option {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #f7fcff;
+      padding: 12px 16px;
+      border-radius: 16px;
+      border: 1.5px solid #d9e9f5;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .option:hover {
+      border-color: #1e6f9f;
+      background: #e7f0fa;
+    }
+
+    .option.selected {
+      border-color: #1e6f9f;
+      background: #d4e8fa;
+    }
+
+    .option input[type="radio"] {
+      accent-color: #1e6f9f;
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+    }
+
+    .option label {
+      font-weight: 500;
+      cursor: pointer;
+      flex: 1;
+      font-size: 1rem;
+    }
+
+    .feedback {
+      padding: 12px 18px;
+      border-radius: 14px;
+      font-weight: 500;
+      margin: 12px 0;
+    }
+
+    .feedback.correct {
+      background: #e2f7e9;
+      color: #0a6e3e;
+      border-left: 5px solid #1e9e5a;
+    }
+
+    .feedback.wrong {
+      background: #ffe8e8;
+      color: #9e1e1e;
+      border-left: 5px solid #d43d3d;
+    }
+
+    .btn {
+      border: none;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      padding: 12px 28px;
+      border-radius: 40px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.18s;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: white;
+      color: #0b3b5e;
+      border: 1.5px solid #b8d6ea;
+      box-shadow: 0 4px 10px rgba(0, 40, 80, 0.04);
+    }
+
+    .btn:hover {
+      background: #e7f0fa;
+      border-color: #1e6f9f;
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: #1e6f9f;
+      border-color: #1e6f9f;
+      color: white;
+      box-shadow: 0 8px 16px -6px #1e6f9f;
+    }
+
+    .btn-primary:hover {
+      background: #0e527c;
+      border-color: #0e527c;
+      color: white;
+    }
+
+    .btn-orange {
+      background: #ff9f1c;
+      border-color: #ff9f1c;
+      color: #ffffff;
+      box-shadow: 0 8px 14px -6px #ff9f1c;
+    }
+
+    .btn-orange:hover {
+      background: #e88a0b;
+      border-color: #e88a0b;
+      color: white;
+    }
+
+    .btn-sm {
+      padding: 8px 18px;
+      font-size: 0.9rem;
+    }
+
+    .quiz-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+      align-items: center;
+    }
+
+    /* Hasil */
+    .result-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 18px;
+      margin: 22px 0;
+    }
+
+    .stat-card {
+      background: #f7fcff;
+      border-radius: 20px;
+      padding: 18px;
+      text-align: center;
+      border: 1px solid #d9e9f5;
+    }
+
+    .stat-card .value {
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: #1e6f9f;
+      line-height: 1.2;
+    }
+
+    .stat-card .label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #4b6d85;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    /* refleksi */
+    .reflection-item {
+      background: #f7fcff;
+      border-radius: 18px;
+      padding: 18px 22px;
+      margin-bottom: 16px;
+      border: 1px solid #d9e9f5;
+    }
+
+    .reflection-item p {
+      font-weight: 600;
+      color: #0b3b5e;
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+    }
+
+    .reflection-item textarea {
+      width: 100%;
+      border-radius: 14px;
+      border: 1.5px solid #c8ddec;
+      padding: 14px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      resize: vertical;
+      background: white;
+      transition: 0.15s;
+    }
+
+    .reflection-item textarea:focus {
+      border-color: #1e6f9f;
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(30, 111, 159, 0.2);
+    }
+
+    /* cover */
+    .cover-hero {
+      text-align: center;
+      padding: 30px 10px 10px;
+    }
+
+    .cover-hero h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #0b3b5e, #1e6f9f, #ff9f1c);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 10px;
+      letter-spacing: -0.02em;
+    }
+
+    .cover-hero p {
+      font-size: 1.2rem;
+      color: #2b5779;
+      font-weight: 500;
+    }
+
+    .icon-sports {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin: 30px 0;
+      font-size: 3.2rem;
+      color: #1e6f9f;
+    }
+
+    .icon-sports i {
+      background: #ffffffd0;
+      padding: 16px;
+      border-radius: 26px;
+      box-shadow: 0 8px 20px -8px #1e6f9f60;
+      transition: 0.2s;
+    }
+
+    .icon-sports i:hover {
+      transform: scale(1.08) translateY(-4px);
+      color: #ff9f1c;
+    }
+
+    .footer-note {
+      margin-top: 32px;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #5f7e96;
+      border-top: 1px solid #d9e9f5;
+      padding-top: 22px;
+    }
+
+    .footer-note strong {
+      color: #1e6f9f;
+    }
+
+    /* responsive */
+    @media (max-width: 700px) {
+      .app { padding: 18px; }
+      .brand h1 { font-size: 1.2rem; }
+      .card { padding: 18px; }
+      .card-header h2 { font-size: 1.5rem; }
+      .cover-hero h1 { font-size: 2rem; }
+      .nav-menu button { padding: 8px 12px; font-size: 0.8rem; }
+      .nav-menu button i { font-size: 0.9rem; }
+      .icon-sports { font-size: 2.2rem; gap: 14px; }
+      .icon-sports i { padding: 12px; }
+    }
+
+    /* util */
+    .hidden { display: none; }
+    .text-center { text-align: center; }
+    .mt-2 { margin-top: 12px; }
+    .mt-3 { margin-top: 22px; }
+    .mb-2 { margin-bottom: 12px; }
+    .flex { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+  </style>
+</head>
+<body>
+<div class="app">
+  <!-- ================= HEADER ================= -->
+  <div class="top-bar">
+    <div class="brand">
+      <i class="fas fa-dumbbell"></i>
+      <h1>REVIEW PJOK SMA</h1>
+    </div>
+    <div class="nav-menu" id="navMenu">
+      <button data-page="cover" class="active"><i class="fas fa-home"></i> Cover</button>
+      <button data-page="tujuan"><i class="fas fa-bullseye"></i> Tujuan</button>
+      <button data-page="bolabesar"><i class="fas fa-futbol"></i> Bola Besar</button>
+      <button data-page="bolakecil"><i class="fas fa-table-tennis"></i> Bola Kecil</button>
+      <button data-page="kebugaran"><i class="fas fa-heartbeat"></i> Kebugaran</button>
+      <button data-page="kuis"><i class="fas fa-question-circle"></i> Kuis</button>
+      <button data-page="hasil"><i class="fas fa-chart-bar"></i> Hasil</button>
+      <button data-page="refleksi"><i class="fas fa-pen"></i> Refleksi</button>
+    </div>
+  </div>
+
+  <!-- ================= PAGE: COVER ================= -->
+  <div class="page active-page" id="page-cover">
+    <div class="cover-hero">
+      <h1>REVIEW PJOK<br>SEMESTER 1</h1>
+      <p>Media Pembelajaran Interaktif untuk SMA</p>
+      <div class="icon-sports">
+        <i class="fas fa-futbol"></i>
+        <i class="fas fa-volleyball"></i>
+        <i class="fas fa-basketball"></i>
+        <i class="fas fa-table-tennis"></i>
+        <i class="fas fa-baseball-ball"></i>
+        <i class="fas fa-running"></i>
+      </div>
+      <button class="btn btn-primary btn-lg" onclick="navigateTo('tujuan')">
+        <i class="fas fa-play"></i> Mulai Pembelajaran
+      </button>
+    </div>
+    <div class="footer-note">
+      <strong>OLAHRAGA BUKAN HANYA TENTANG KEMENANGAN, TETAPI JUGA TENTANG KESEHATAN, DISIPLIN, KERJA SAMA, DAN SPORTIVITAS.</strong>
+    </div>
+  </div>
+
+  <!-- ================= PAGE: TUJUAN ================= -->
+  <div class="page" id="page-tujuan">
+    <div class="card">
+      <div class="card-header">
+        <i class="fas fa-bullseye"></i>
+        <h2>Tujuan Pembelajaran</h2>
+      </div>
+      <ul style="list-style: none; display: flex; flex-direction: column; gap: 14px;">
+        <li style="display: flex; gap: 12px;"><i class="fas fa-check-circle" style="color:#1e6f9f; margin-top:4px;"></i> Menjelaskan pengertian dan karakteristik permainan bola besar dan bola kecil.</li>
+        <li style="display: flex; gap: 12px;"><i class="fas fa-check-circle" style="color:#1e6f9f; margin-top:4px;"></i> Mengidentifikasi teknik dasar berbagai permainan olahraga.</li>
+        <li style="display: flex; gap: 12px;"><i class="fas fa-check-circle" style="color:#1e6f9f; margin-top:4px;"></i> Memahami komponen dan manfaat kebugaran jasmani.</li>
+        <li style="display: flex; gap: 12px;"><i class="fas fa-check-circle" style="color:#1e6f9f; margin-top:4px;"></i> Menjelaskan prinsip latihan kebugaran jasmani (FITT).</li>
+        <li style="display: flex; gap: 12px;"><i class="fas fa-check-circle" style="color:#1e6f9f; margin-top:4px;"></i> Menunjukkan sikap sportif, disiplin, kerja sama, dan tanggung jawab.</li>
+        <li style="display: flex; gap: 12px;"><i class="fas fa-check-circle" style="color:#1e6f9f; margin-top:4px;"></i> Menyelesaikan evaluasi pembelajaran dengan baik.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <i class="fas fa-lightbulb"></i>
+        <h3>Aktivitas Interaktif</h3>
+      </div>
+      <p><strong>Tebak Teknik Dasar:</strong> Sebutkan 3 teknik dasar sepak bola, bola voli, dan bola basket secara bergantian dengan teman sebangku!</p>
+      <p class="mt-2"><strong>Diskusi Kelompok:</strong> Apa perbedaan utama antara permainan bola besar dan bola kecil? Diskusikan!</p>
+    </div>
+  </div>
+
+  <!-- ================= PAGE: BOLA BESAR ================= -->
+  <div class="page" id="page-bolabesar">
+    <div class="card">
+      <div class="card-header">
+        <i class="fas fa-futbol"></i>
+        <h2>Permainan Bola Besar</h2>
+      </div>
+      <p>Permainan bola besar adalah cabang olahraga permainan yang menggunakan bola berukuran relatif besar dan biasanya dimainkan secara beregu.</p>
+      <div class="sport-grid">
+        <!-- Sepak Bola -->
+        <div class="sport-item">
+          <h4><i class="fas fa-futbol"></i> Sepak Bola</h4>
+          <p><strong>Pengertian:</strong> Permainan beregu yang bertujuan memasukkan bola ke gawang lawan sebanyak-banyaknya dan mempertahankan gawang sendiri.</p>
+          <p class="mt-2"><span class="pill">Teknik Dasar</span></p>
+          <ul>
+            <li><i class="fas fa-circle"></i> Passing (mengoper bola)</li>
+            <li><i class="fas fa-circle"></i> Dribbling (menggiring bola)</li>
+            <li><i class="fas fa-circle"></i> Shooting (menendang ke gawang)</li>
+            <li><i class="fas fa-circle"></i> Controlling (mengontrol bola)</li>
+            <li><i class="fas fa-circle"></i> Heading (menyundul bola)</li>
+            <li><i class="fas fa-circle"></i> Throw-in (lemparan ke dalam)</li>
+          </ul>
+          <p class="mt-2"><span class="pill">Peraturan</span></p>
+          <ul>
+            <li><i class="fas fa-circle"></i> 11 pemain per tim</li>
+            <li><i class="fas fa-circle"></i> Durasi 2 × 45 menit</li>
+            <li><i class="fas fa-circle"></i> Tidak boleh main bola dengan tangan (kecuali kiper & lemparan ke dalam)</li>
+          </ul>
+        </div>
+        <!-- Bola Voli -->
+        <div class="sport-item">
+          <h4><i class="fas fa-volleyball"></i> Bola Voli</h4>
+          <p><strong>Pengertian:</strong> Permainan beregu yang bertujuan menjatuhkan bola di daerah permainan lawan melewati net.</p>
+          <p class="mt-2"><span class="pill">Teknik Dasar</span></p>
+          <ul>
+            <li><i class="fas fa-circle"></i> Passing bawah</li>
+            <li><i class="fas fa-circle"></i> Passing atas</li>
+            <li><i class="fas fa-circle"></i> Servis bawah & atas</li>
+            <li><i class="fas fa-circle"></i> Smash / spike</li>
+            <li><i class="fas fa-circle"></i> Block / bendungan</li>
+          </ul>
+          <p class="mt-2"><span class="pill">Peraturan</span></p>
+          <ul>
+            <li><i class="fas fa-circle"></i> 6 pemain per tim</li>
+            <li><i class="fas fa-circle"></i> Sistem rally point</li>
+            <li><i class="fas fa-circle"></i> Satu set hingga 25 poin (selisih minimal 2), set penentuan 15 poin</li>
+          </ul>
+        </div>
+        <!-- Basket -->
+        <div class="sport-item">
+          <h4><i class="fas fa-basketball"></i> Bola Basket</h4>
+          <p><strong>Pengertian:</strong> Permainan beregu yang bertujuan memasukkan bola ke keranjang lawan untuk memperoleh poin.</p>
+          <p class="mt-2"><span class="pill">Teknik Dasar</span></p>
+          <ul>
+            <li><i class="fas fa-circle"></i> Dribbling (memantulkan bola)</li>
+            <li><i class="fas fa-circle"></i> Passing (mengoper bola)</li>
+            <li><i class="fas fa-circle"></i> Shooting (menembak ke ring)</li>
+            <li><i class="fas fa-circle"></i> Lay-up</li>
+            <li><i class="fas fa-circle"></i> Pivot</li>
+            <li><i class="fas fa-circle"></i> Rebound</li>
+          </ul>
+          <p class="mt-2"><span class="pill">Peraturan</span></p>
+          <ul>
+            <li><i class="fas fa-circle"></i> 5 pemain per tim</li>
+            <li><i class="fas fa-circle"></i> Tembakan bebas = 1 poin</li>
+            <li><i class="fas fa-circle"></i> Dalam garis 3 angka = 2 poin, luar garis 3 angka = 3 poin</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= PAGE: BOLA KECIL ================= -->
+  <div class="page" id="page-bolakecil">
+    <div class="card">
+      <div class="card-header">
+        <i class="fas fa-table-tennis"></i>
+        <h2>Permainan Bola Kecil</h2>
+      </div>
+      <p>Permainan bola kecil menggunakan bola atau alat permainan berukuran relatif kecil. Beberapa cabang menggunakan kok atau shuttlecock.</p>
+      <div class="sport-grid">
+        <!-- Bulu Tangkis -->
+        <div class="sport-item">
+          <h4><i class="fas fa-feather-alt"></i> Bulu Tangkis</h4>
+          <p><strong>Tujuan:</strong> Memukul kok melewati net agar jatuh di daerah lawan.</p>
+          <p class="mt-2"><span class="pill">Teknik Dasar</span></p>
+          <ul>
+            <li><i class="fas fa-circle"></i> Servis</li>
+            <li><i class="fas fa-circle"></i> Forehand</li>
+            <li><i class="fas fa-circle"></i> Backhand</li>
+            <li><i class="fas fa-circle"></i> Lob</li>
+            <li><i class="fas fa-circle"></i> Dropshot</li>
+            <li><i class="fas fa-circle"></i> Smash</li>
+            <li><i class="fas fa-circle"></i> Netting</li>
+          </ul>
+          <p class="mt-2"><span class="pill">Peraturan</span></p>
+          <ul>
+            <li><i class="fas fa-circle"></i> Sistem rally point</li>
+            <li><i class="fas fa-circle"></i> Satu gim hingga 21 poin</li>
+            <li><i class="fas fa-circle"></i> Unggul minimal 2 poin, maksimal 30 poin</li>
+          </ul>
+        </div>
+        <!-- Tenis Meja -->
+        <div class="sport-item">
+          <h4><i class="fas fa-table-tennis"></i> Tenis Meja</h4>
+          <p><strong>Tujuan:</strong> Memukul bola melewati net agar lawan tidak mampu mengembalikannya dengan benar.</p>
+          <p class="mt-2"><span class="pill">Teknik Dasar</span></p>
+          <ul>
+            <li><i class="fas fa-circle"></i> Grip (cara memegang bet)</li>
+            <li><i class="fas fa-circle"></i> Stance (sikap siap)</li>
+            <li><i class="fas fa-circle"></i> Servis</li>
+            <li><i class="fas fa-circle"></i> Push</li>
+            <li><i class="fas fa-circle"></i> Drive</li>
+            <li><i class="fas fa-circle"></i> Block</li>
+            <li><i class="fas fa-circle"></i> Smash</li>
+          </ul>
+          <p class="mt-2"><span class="pill">Peraturan</span></p>
+          <ul>
+            <li><i class="fas fa-circle"></i> Satu gim hingga 11 poin</li>
+            <li><i class="fas fa-circle"></i> Harus unggul 2 poin</li>
+            <li><i class="fas fa-circle"></i> Pergantian servis setiap 2 poin (deuce: setiap 1 poin)</li>
+          </ul>
+        </div>
+        <!-- Softball -->
+        <div class="sport-item">
+          <h4><i class="fas fa-baseball-ball"></i> Softball</h4>
+          <p><strong>Tujuan:</strong> Memperoleh angka dengan memukul bola dan berlari melewati base.</p>
+          <p class="mt-2"><span class="pill">Teknik Dasar</span></p>
+          <ul>
+            <li><i class="fas fa-circle"></i> Melempar bola</li>
+            <li><i class="fas fa-circle"></i> Menangkap bola</li>
+            <li><i class="fas fa-circle"></i> Memukul bola</li>
+            <li><i class="fas fa-circle"></i> Berlari antarbasis</li>
+            <li><i class="fas fa-circle"></i> Sliding</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= PAGE: KEBUGARAN ================= -->
+  <div class="page" id="page-kebugaran">
+    <div class="card">
+      <div class="card-header">
+        <i class="fas fa-heartbeat"></i>
+        <h2>Kebugaran Jasmani</h2>
+      </div>
+      <p><strong>Pengertian:</strong> Kebugaran jasmani adalah kemampuan tubuh melakukan aktivitas sehari-hari tanpa mengalami kelelahan berlebihan dan masih memiliki cadangan tenaga.</p>
+
+      <h3 class="mt-3" style="color:#0b3b5e; margin-bottom:10px;">Komponen Kebugaran Jasmani</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Komponen</th><th>Pengertian</th><th>Contoh Latihan</th></tr></thead>
+          <tbody>
+            <tr><td>Kekuatan</td><td>Kemampuan otot menghasilkan tenaga</td><td>Push-up</td></tr>
+            <tr><td>Daya tahan</td><td>Kemampuan melakukan aktivitas dalam waktu lama</td><td>Jogging</td></tr>
+            <tr><td>Kecepatan</td><td>Kemampuan bergerak dalam waktu singkat</td><td>Sprint</td></tr>
+            <tr><td>Kelentukan</td><td>Kemampuan persendian bergerak luas</td><td>Peregangan</td></tr>
+            <tr><td>Kelincahan</td><td>Kemampuan mengubah arah dengan cepat</td><td>Shuttle run</td></tr>
+            <tr><td>Keseimbangan</td><td>Kemampuan mempertahankan posisi tubuh</td><td>Berdiri satu kaki</td></tr>
+            <tr><td>Koordinasi</td><td>Kemampuan menggabungkan gerakan</td><td>Lempar tangkap</td></tr>
+            <tr><td>Daya ledak</td><td>Kemampuan menghasilkan tenaga secara cepat</td><td>Vertical jump</td></
